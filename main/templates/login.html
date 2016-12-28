@@ -1,0 +1,15 @@
+{% extends 'main.html' %}
+{% load i18n %}
+
+{% block content %}
+  Login form
+  <form action="/login" method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="{% trans 'Login' %}">
+  </form>
+{% endblock %}
+
+{% comment %}
+vim ft=htmldjango
+{% endcomment %}

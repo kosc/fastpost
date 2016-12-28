@@ -1,0 +1,14 @@
+{% extends 'main.html' %}
+{% load i18n %}
+
+{% block content %}
+  <form action="/newpost" method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="{% trans 'Create post' %}">
+  </form>
+{% endblock %}
+
+{% comment %}
+vim ft=htmldjango
+{% endcomment %}

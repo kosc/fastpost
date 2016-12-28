@@ -1,0 +1,21 @@
+nav {
+  float: left;
+  margin-right: 50px;
+  background: #fefcea; /* Для старых браузров */
+  background: linear-gradient(to right, #fefcea, #f1da36);
+  width: 200px;
+  bottom: 0px;
+  top: 0px;
+  position: absolute;
+}
+nav a {
+  padding: 15px;
+  display: block;
+  text-decoration: none;
+}
+nav a:hover {
+  background: white;
+}
+main {
+  padding-left: 200px;
+}

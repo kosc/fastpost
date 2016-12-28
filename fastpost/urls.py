@@ -15,7 +15,15 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
+import main.views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+
+    url(r'^$', main.views.index),
+    url(r'^register$', main.views.RegistrationFormView.as_view(), name='register'),
+    url(r'^login$', main.views.LoginFormView.as_view(), name='login'),
+    url(r'^logout$', main.views.LogoutView.as_view(), name='logout'),
+
+    url(r'^newpost$', main.views.NewPostView.as_view(), name='newpost'),
 ]
