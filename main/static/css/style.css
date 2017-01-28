@@ -1,8 +1,6 @@
 nav {
   float: left;
   margin-right: 50px;
-  background: #fefcea; /* Для старых браузров */
-  background: linear-gradient(to right, #fefcea, #f1da36);
   width: 200px;
   bottom: 0px;
   top: 0px;
