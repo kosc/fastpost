@@ -9,16 +9,37 @@ class PostTestCase(TestCase):
         pass
 
     def test_create_new_post(self):
+        """
+        In this test we need to create new user and login
+        to add new post by this user.
+        """
+        # register
+        test_user_data = {
+                    'username': 'user_for_create_post',
+                    'password1': 'T3stP4ssw0rd',
+                    'password2': 'T3stP4ssw0rd',
+                }
+        response = self.client.post('/register', test_user_data)
+        self.assertEqual(response.status_code, 302)
+        # login
+        test_user_data = {
+                'username': 'user_for_create_post',
+                'password': 'T3stP4ssw0rd',
+            }
+        response = self.client.post('/login', test_user_data)
+        user = User.objects.get(username='user_for_create_post')
+        # add post
         response = self.client.get('/newpost')
         self.assertEqual(response.status_code, 200)
         test_post_data = {
                     'title': 'Test post title',
                     'content': 'Test post content',
-                    'author': 'register_user_test'
+                    'author': user,
                 }
         response = self.client.post('/newpost', test_post_data, follow=True)
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, "Test post title")
+        user.delete()
 
 
 class AuthTestCase(TestCase):

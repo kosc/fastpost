@@ -4,7 +4,7 @@ from django.views.generic.base import View
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import login, logout
 from main.models import Post
-from main.forms import NewPostForm
+from main.forms import NewPostForm, PartialNewPostForm
 
 
 def index(request):
@@ -41,11 +41,13 @@ class LogoutView(View):
 
 
 class NewPostView(FormView):
-    form_class = NewPostForm
+    form_class = PartialNewPostForm
     template_name = 'newpost.html'
     success_url = '/'
 
     def form_valid(self, form):
-        form.author_id = self.request.user
-        form.save()
+        form = PartialNewPostForm(self.request.POST)
+        post = form.save(commit=False)
+        post.author = self.request.user
+        post.save()
         return super(NewPostView, self).form_valid(form)

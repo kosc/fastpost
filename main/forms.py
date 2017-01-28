@@ -8,4 +8,11 @@ class NewPostForm(ModelForm):
 
     class Meta:
         model = Post
+        exclude = ['created_at']
+
+
+class PartialNewPostForm(ModelForm):
+
+    class Meta:
+        model = Post
         exclude = ['created_at', 'author']
