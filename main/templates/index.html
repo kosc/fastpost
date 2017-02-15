@@ -4,7 +4,7 @@
   <ul>
     {% for post in posts %}
       <li>
-        <a href="post/{{ post.generate_hru }}">{{ post.title }}</a>
+        <a href="post/{{ post.slug }}">{{ post.title }}</a>
       </li>
     {% endfor %}
   </ul>

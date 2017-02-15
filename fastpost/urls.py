@@ -13,7 +13,8 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-from django.conf.urls import url
+from django.conf import settings
+from django.conf.urls import include, url
 from django.contrib import admin
 import main.views
 
@@ -26,4 +27,12 @@ urlpatterns = [
     url(r'^logout$', main.views.LogoutView.as_view(), name='logout'),
 
     url(r'^newpost$', main.views.NewPostView.as_view(), name='newpost'),
+
+    url(r'^post/(?P<post_title>[a-zA-Z0-9\-]+)', main.views.PostView.as_view(), name='viewpost'),
 ]
+
+if settings.DEBUG:
+    import debug_toolbar
+    urlpatterns += [
+        url(r'^__debug__/', include(debug_toolbar.urls)),
+    ]

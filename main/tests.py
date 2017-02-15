@@ -12,6 +12,7 @@ class PostTestCase(TestCase):
         """
         In this test we need to create new user and login
         to add new post by this user.
+        And test redirect to post after adding.
         """
         # register
         test_user_data = {
@@ -39,6 +40,7 @@ class PostTestCase(TestCase):
         response = self.client.post('/newpost', test_post_data, follow=True)
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, "Test post title")
+        self.assertContains(response, "Test post content")
         user.delete()
 
 

@@ -1,8 +1,6 @@
 from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
-from transliterate import translit
-from transliterate.exceptions import LanguageDetectionError
 import re
 
 
@@ -15,21 +13,7 @@ class Post(models.Model):
     def __str__(self):
         return self.title
 
-    def generate_hru(self):
-        """
-        This function generate human-readable URL from post title
-        If we can't delect language, assume that the language is English
-        """
-        hru = None
-        try:
-            hru = translit(self.title, reversed=True)
-        except LanguageDetectionError:
-            hru = self.title
-        regex = re.compile("[^a-zA-Z0-9\ ]")
-        hru = regex.sub("", hru)
-        hru = hru.replace(" ", "-").lower()
-        return hru
-
+    slug = models.CharField(max_length=255, unique=True)
     title = models.CharField(max_length=255)
     content = models.TextField()
     pictures = models.ManyToManyField(Picture, blank=True)
