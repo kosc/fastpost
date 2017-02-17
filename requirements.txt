@@ -1,3 +1,5 @@
 Django>=1.10.3
 django-debug-toolbar>=1.5
 psycopg2>=2.6.1
+unidecode>=0.4.20
+Pillow>=3.2.0
