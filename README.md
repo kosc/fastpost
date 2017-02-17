@@ -34,4 +34,4 @@ Fill your database and run Django development server:
 python manage.py migrate
 python manage.py runserver
 ```
-Fastpost will be able on [localhost:8000](http://127.0.0.1:8000) (by default).
+Fastpost will be available on [localhost:8000](http://127.0.0.1:8000) (by default).
