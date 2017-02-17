@@ -12,7 +12,24 @@ cd fastpost
 pip install --user requirements/dev.txt # if you want to help me with this project or just test this.
 pip install --user requirements/base.txt # if you want to use this on production
 ```
-Create user and database for fastpost in postgresql, and edit fastpost/settings.py (section DATABASES) to set your db settings, then fill your database and run Django development server:
+Create user and database for fastpost in postgresql, and create fastpost/local\_settings.py with following content:
+```python
+SECRET_KEY = 'Your secret key'
+DEBUG = True # False if your want to use fastpost in production
+ALLOWED_HOSTS = []
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'HOST': 'localhost', # server with postgresql (can be different from localhost)
+        'NAME': 'fastpost', # database for fastpost
+        'USER': 'fastpost_user', # database user for fastpost
+        'PASSWORD': 'T3mpPassw0rd', # password for your fastpost user
+    }
+}
+
+```
+Fill your database and run Django development server:
 ```shell
 python manage.py migrate
 python manage.py runserver
