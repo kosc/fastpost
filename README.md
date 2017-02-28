@@ -16,7 +16,8 @@ Create user and database for fastpost in postgresql, and create fastpost/local\_
 ```python
 SECRET_KEY = 'Your secret key'
 DEBUG = True # False if your want to use fastpost in production
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [] # for development
+ALLOWED_HOSTS = ["your-production-domain"] # for production
 
 DATABASES = {
     'default': {
