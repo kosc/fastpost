@@ -1,6 +1,5 @@
 from django.contrib.auth.models import User
 from django.test import TestCase
-from main.models import Post
 
 
 class PostTestCase(TestCase):
@@ -98,3 +97,29 @@ class AuthTestCase(TestCase):
         response = self.client.get('/logout', follow=True)
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, "Login")
+
+
+class RegressionTestCase(TestCase):
+
+    @classmethod
+    def setUpTestData(self):
+        super(RegressionTestCase, self).setUpTestData()
+        self.test_user = User()
+        self.test_user.username = "test_user"
+        self.test_user.set_password("T3stP4ssw0rd")
+        self.test_user.save()
+
+    def test_duplicate_slugs(self):
+        self.client.login(username="test_user", password="T3stP4ssw0rd")
+        first_post_data = {
+                'title': 'Test title',
+                'content': 'First post content',
+            }
+        second_post_data = {
+                'title': 'Test title',
+                'content': 'Second post content',
+            }
+        response = self.client.post('/newpost', first_post_data, follow=True)
+        self.assertContains(response, "First")
+        response = self.client.post('/newpost', second_post_data, follow=True)
+        self.assertContains(response, "Second")
