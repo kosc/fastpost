@@ -10,7 +10,7 @@ from main.forms import NewPostForm, PartialNewPostForm
 
 
 def index(request):
-    posts = Post.objects.all()
+    posts = Post.objects.all()[::-1]
     return render(request, 'index.html', {'posts': posts})
 
 
