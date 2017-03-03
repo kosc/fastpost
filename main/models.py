@@ -13,6 +13,18 @@ class Post(models.Model):
     def __str__(self):
         return self.title
 
+    def save(self, *args, **kwargs):
+        same_slug = True
+        counter = 1
+        while same_slug:
+            same_slug = Post.objects.filter(slug=self.slug)
+            if same_slug:
+                self.slug += '_' + str(counter)
+                counter += 1
+            else:
+                break
+        super(Post, self).save(*args, **kwargs)
+
     slug = models.CharField(max_length=255, unique=True)
     title = models.CharField(max_length=255)
     content = models.TextField()
