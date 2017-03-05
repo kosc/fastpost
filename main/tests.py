@@ -4,30 +4,17 @@ from django.test import TestCase
 
 class PostTestCase(TestCase):
 
-    def setUp(self):
-        pass
+    @classmethod
+    def setUpTestData(self):
+        super(PostTestCase, self).setUpTestData()
+        self.test_user = User()
+        self.test_user.username = "test_user"
+        self.test_user.set_password("T3stP4ssw0rd")
+        self.test_user.save()
 
     def test_create_new_post(self):
-        """
-        In this test we need to create new user and login
-        to add new post by this user.
-        And test redirect to post after adding.
-        """
-        # register
-        test_user_data = {
-                    'username': 'user_for_create_post',
-                    'password1': 'T3stP4ssw0rd',
-                    'password2': 'T3stP4ssw0rd',
-                }
-        response = self.client.post('/register', test_user_data)
-        self.assertEqual(response.status_code, 302)
-        # login
-        test_user_data = {
-                'username': 'user_for_create_post',
-                'password': 'T3stP4ssw0rd',
-            }
-        response = self.client.post('/login', test_user_data)
-        user = User.objects.get(username='user_for_create_post')
+        user = User.objects.get(username='test_user')
+        self.client.login(username="test_user", password="T3stP4ssw0rd")
         # add post
         response = self.client.get('/newpost')
         self.assertEqual(response.status_code, 200)
