@@ -1,8 +1,6 @@
 # fastpost
 Blog engine in Django Framework, just for fun
 
-![I developed](http://s5.pikabu.ru/post_img/big/2015/04/23/8/1429794583_343353562.png)
-
 # Installation instructions:
 Install python3.5 or later and pip, also you will need postgresql9.4 or later.
 Clone the repo and install all necessary python modules:
