@@ -1,1 +1,4 @@
 fastpost/local_settings.py
+*.pyo
+*.pyc
+**/__pycache__/
