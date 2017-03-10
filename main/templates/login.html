@@ -2,12 +2,16 @@
 {% load i18n %}
 
 {% block content %}
-  Login form
-  <form action="/login" method="POST">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="{% trans 'Login' %}">
-  </form>
+  <div class="row">
+    <form action="/login" method="POST" class="col s12">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button class="btn waves-effect waves-light" type="submit" name="action">
+        {% trans 'Login' %}
+        <i class="material-icons right">send</i>
+      </button>
+    </form>
+  </div>
 {% endblock %}
 
 {% comment %}
