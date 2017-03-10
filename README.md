@@ -19,11 +19,8 @@ ALLOWED_HOSTS = ["your-production-domain"] # for production
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'HOST': 'localhost', # server with postgresql (can be different from localhost)
-        'NAME': 'fastpost', # database for fastpost
-        'USER': 'fastpost_user', # database user for fastpost
-        'PASSWORD': 'T3mpPassw0rd', # password for your fastpost user
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': 'fastpostdb.sqlite3', # database for fastpost
     }
 }
 
