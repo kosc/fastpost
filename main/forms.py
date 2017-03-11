@@ -15,4 +15,4 @@ class PartialNewPostForm(ModelForm):
 
     class Meta:
         model = Post
-        exclude = ['created_at', 'author', 'slug']
+        exclude = ['created_at', 'author', 'slug', 'short_content']

@@ -2,7 +2,7 @@
 
 {% block content %}
 <h1>{{ post.title }}</h1>
-{{ post.content }}
+{{ post.content|safe }}
 <hr>
 {{ post.created_at }}
 {% endblock %}

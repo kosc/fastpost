@@ -1,7 +1,9 @@
+import re
 from django.db import models
 from django.utils import timezone
+from django.utils.html import strip_tags
 from django.contrib.auth.models import User
-import re
+from tinymce.models import HTMLField
 
 
 class Picture(models.Model):
@@ -24,13 +26,13 @@ class Post(models.Model):
             else:
                 break
         if not self.short_content:
-            self.short_content = self.content[:100] + "..."
+            self.short_content = strip_tags(self.content)[:100] + "..."
         super(Post, self).save(*args, **kwargs)
 
     slug = models.CharField(max_length=255, unique=True)
     title = models.CharField(max_length=255)
     short_content = models.CharField(max_length=255, blank=True)
-    content = models.TextField()
+    content = HTMLField()
     pictures = models.ManyToManyField(Picture, blank=True)
     created_at = models.DateTimeField(default=timezone.now)
     author = models.ForeignKey(User)

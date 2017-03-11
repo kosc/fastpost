@@ -29,6 +29,8 @@ urlpatterns = [
     url(r'^newpost$', main.views.NewPostView.as_view(), name='newpost'),
 
     url(r'^post/(?P<post_title>[a-zA-Z0-9\-_]+)', main.views.PostView.as_view(), name='viewpost'),
+
+    url(r'^tinymce/', include('tinymce.urls')),
 ]
 
 if settings.DEBUG:
