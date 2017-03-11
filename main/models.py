@@ -23,10 +23,13 @@ class Post(models.Model):
                 counter += 1
             else:
                 break
+        if not self.short_content:
+            self.short_content = self.content[:100] + "..."
         super(Post, self).save(*args, **kwargs)
 
     slug = models.CharField(max_length=255, unique=True)
     title = models.CharField(max_length=255)
+    short_content = models.CharField(max_length=255, blank=True)
     content = models.TextField()
     pictures = models.ManyToManyField(Picture, blank=True)
     created_at = models.DateTimeField(default=timezone.now)
