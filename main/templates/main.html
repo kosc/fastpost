@@ -23,6 +23,7 @@
           <a href="/" class="brand-logo">FastPost</a>
           <ul class="right hide-on-med-and-down">
             {% if user.is_authenticated %}
+              <li>{% trans "You are logged in as " %}<b>{{ user.username }}</b> </li>
               <li><a href="/newpost">New post</a></li>
               <li><a href="/logout">Logout</a></li>
             {% else %}
