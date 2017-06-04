@@ -27,6 +27,7 @@ urlpatterns = [
     url(r'^logout$', main.views.LogoutView.as_view(), name='logout'),
 
     url(r'^newpost$', main.views.NewPostView.as_view(), name='newpost'),
+    url(r'^editpost/(?P<post_id>\d+)$', main.views.EditPostView.as_view(), name='editpost'),
 
     url(r'^post/(?P<post_title>[a-zA-Z0-9\-_]+)', main.views.PostView.as_view(), name='viewpost'),
 

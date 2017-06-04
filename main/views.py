@@ -61,9 +61,35 @@ class NewPostView(FormView):
         return self.success_url
 
 
+class EditPostView(View):
+    template_name = 'editpost.html'
+
+    def get(self, request, post_id):
+        post = Post.objects.get(id=post_id)
+        form = NewPostForm(instance=post)
+        context = {
+            "post": post,
+            "form": form
+        }
+        return render(request, 'editpost.html', context)
+
+    def post(self, request, post_id):
+        post = Post.objects.get(id=post_id)
+        form = NewPostForm(request.POST, instance=post)
+        post = form.save()
+        return redirect('/post/' + post.slug)
+
+
 class PostView(View):
     template_name = 'postview.html'
 
     def get(self, request, post_title):
         post = Post.objects.filter(slug=post_title)[0]
-        return render(request, "postview.html", {"post": post})
+        editable = False
+        if post.author == request.user:
+            editable = True
+        context = {
+            "post": post,
+            "editable": editable
+        }
+        return render(request, "postview.html", context)

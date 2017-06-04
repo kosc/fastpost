@@ -1,7 +1,11 @@
 {% extends 'main.html' %}
+{% load i18n %}
 
 {% block content %}
 <h1>{{ post.title }}</h1>
+{% if editable %}
+<a href="/editpost/{{post.id}}">{% trans 'Edit post' %}</a>
+{% endif %}
 {{ post.content|safe }}
 <hr>
 {{ post.created_at }}

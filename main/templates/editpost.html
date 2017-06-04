@@ -1,0 +1,14 @@
+{% extends 'main.html' %}
+{% load i18n %}
+
+{% block content %}
+  <form action="/editpost/{{post.id}}" method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="{% trans 'Edit post' %}">
+  </form>
+{% endblock %}
+
+{% comment %}
+vim ft=htmldjango
+{% endcomment %}
