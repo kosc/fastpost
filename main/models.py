@@ -25,8 +25,7 @@ class Post(models.Model):
                 counter += 1
             else:
                 break
-        if not self.short_content:
-            self.short_content = strip_tags(self.content)[:100] + "..."
+        self.short_content = strip_tags(self.content)[:100] + "..."
         super(Post, self).save(*args, **kwargs)
 
     slug = models.CharField(max_length=255, unique=True)
