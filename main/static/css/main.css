@@ -1,3 +1,7 @@
 main {
   padding-left: 10px;
 }
+
+#sidenav-overlay {
+  z-index: 1;
+}
