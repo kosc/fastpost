@@ -5,3 +5,11 @@ main {
 #sidenav-overlay {
   z-index: 1;
 }
+
+.brand-logo {
+  margin-left: 35px;
+}
+
+.right.hide-on-med-and-down {
+  margin-right: 25px;
+}
