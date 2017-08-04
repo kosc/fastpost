@@ -12,6 +12,9 @@ pip install --user -r requirements/base.txt # if you want to use this on product
 ```
 Create user and database for fastpost in postgresql, and create fastpost/local\_settings.py with following content:
 ```python
+# from .settings import INSTALLED_APPS, MIDDLEWARE_CLASSES
+# Uncomment first line for development server
+
 SECRET_KEY = 'Your secret key'
 DEBUG = True # False if your want to use fastpost in production
 ALLOWED_HOSTS = [] # for development
@@ -24,6 +27,7 @@ DATABASES = {
         'NAME': 'fastpostdb.sqlite3', # database for fastpost
     }
 }
+
 # if you want to use debug_toolbar
 INSTALLED_APPS.append('debug_toolbar')
 MIDDLEWARE_CLASSES.append('debug_toolbar.middleware.DebugToolbarMiddleware')
