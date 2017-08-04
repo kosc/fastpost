@@ -15,6 +15,7 @@ Create user and database for fastpost in postgresql, and create fastpost/local\_
 SECRET_KEY = 'Your secret key'
 DEBUG = True # False if your want to use fastpost in production
 ALLOWED_HOSTS = [] # for development
+ALLOWED_HOSTS = ['*'] # for docker-compose
 ALLOWED_HOSTS = ["your-production-domain"] # for production
 
 DATABASES = {
@@ -33,4 +34,10 @@ Fill your database and run Django development server:
 python manage.py migrate
 python manage.py runserver
 ```
+To run with a docker compose
+```
+touch fastpostdb.sqlite3
+docker-compose up
+```
+
 Fastpost will be available on [localhost:8000](http://127.0.0.1:8000) (by default).
