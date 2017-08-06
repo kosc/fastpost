@@ -1,12 +1,14 @@
 from unidecode import unidecode
 from django.utils.text import slugify
 from django.shortcuts import render, redirect
-from django.views.generic.edit import FormView
+from django.views.generic import ListView
+from django.views.generic.edit import FormView, CreateView
 from django.views.generic.base import View
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.contrib.auth.models import User
 from django.contrib.auth import login, logout
-from main.models import Post
-from main.forms import NewPostForm, PartialNewPostForm
+from main.models import Post, Comment
+from main.forms import NewPostForm, PartialNewPostForm, NewCommentForm
 
 
 def index(request):
@@ -85,11 +87,24 @@ class PostView(View):
 
     def get(self, request, post_title):
         post = Post.objects.filter(slug=post_title)[0]
+        comments = Comment.objects.filter(post_id=post.id)
+        form = NewCommentForm()
         editable = False
         if post.author == request.user:
             editable = True
         context = {
             "post": post,
-            "editable": editable
+            "editable": editable,
+            "comments": comments,
+            "form": form,
         }
         return render(request, "postview.html", context)
+
+    def post(self, request, post_title):
+        post = Post.objects.filter(slug=post_title)[0]
+        form = NewCommentForm(request.POST)
+        if isinstance(request.user, User):
+            form.instance.author = request.user
+        form.instance.post = post
+        form.save()
+        return redirect('/post/' + post.slug)

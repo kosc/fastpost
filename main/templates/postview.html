@@ -2,11 +2,30 @@
 {% load i18n %}
 
 {% block content %}
-<h1>{{ post.title }}</h1>
-{% if editable %}
-<a href="/editpost/{{post.id}}">{% trans 'Edit post' %}</a>
-{% endif %}
-{{ post.content|safe }}
-<hr>
-{{ post.created_at }}
+  <h1>{{ post.title }}</h1>
+  {% if editable %}
+    <a href="/editpost/{{post.id}}">{% trans 'Edit post' %}</a>
+  {% endif %}
+  {{ post.content|safe }}
+  <hr>
+  {{ post.created_at }}
+  <hr>
+  <ul>
+    {% for comment in comments %}
+      <li>
+        {% if comment.author %}
+          {{ comment.author.username }}
+        {% else %}
+          {% trans 'Anonymous' %}
+        {% endif %}
+        {% trans 'sayd:' %}<br>
+        {{ comment.text|safe }}
+      </li>
+    {% endfor %}
+  </ul>
+  <form action="/post/{{ post.slug }}" method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="{% trans 'Add comment' %}">
+  </form>
 {% endblock %}

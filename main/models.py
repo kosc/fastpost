@@ -42,5 +42,6 @@ class Comment(models.Model):
     def __str__(self):
         return self.text[0:20]
 
+    post = models.ForeignKey(Post)
     text = models.TextField()
-    author = models.OneToOneField(to=User)
+    author = models.ForeignKey(User, blank=True, null=True)
