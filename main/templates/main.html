@@ -12,29 +12,30 @@
 			  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
 			  crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script>
-    <script src="//cloud.tinymce.com/stable/tinymce.min.js?apiKey=14jis8psw1j86lhbtdwewg3qrs4bd6a96nhjo4ado233rnqc"></script>
+    <script src="https://cloud.tinymce.com/stable/tinymce.min.js?apiKey=14jis8psw1j86lhbtdwewg3qrs4bd6a96nhjo4ado233rnqc"></script>
     <script>
-      tinymce.init({
-        selector: 'textarea',
-        toolbar: 'fontselect | undo redo | styleselect | bold italic | link image | codesample',
-        font_formats: 'Andale Mono=andale mono,times;Monospace=monospace;Arial=arial,helvetica,sans-serif;Arial Black=arial black,avant garde;Book Antiqua=book antiqua,palatino;Comic Sans MS=comic sans ms,sans-serif;Courier New=courier new,courier;Georgia=georgia,palatino;Helvetica=helvetica;Impact=impact,chicago;Symbol=symbol;Tahoma=tahoma,arial,helvetica,sans-serif;Terminal=terminal,monaco;Times New Roman=times new roman,times;Trebuchet MS=trebuchet ms,geneva;Verdana=verdana,geneva;Webdings=webdings;Wingdings=wingdings,zapf dingbats;',
-        plugins : 'advlist autolink link image lists charmap print preview codesample',
-        codesample_languages: [
-          {text: 'HTML/XML', value: 'markup'},
-          {text: 'JavaScript', value: 'javascript'},
-          {text: 'CSS', value: 'css'},
-          {text: 'PHP', value: 'php'},
-          {text: 'Ruby', value: 'ruby'},
-          {text: 'Python', value: 'python'},
-          {text: 'Java', value: 'java'},
-          {text: 'C', value: 'c'},
-          {text: 'Bash', value: 'bash'},
-          {text: 'C#', value: 'csharp'},
-          {text: 'C++', value: 'cpp'}
-        ],
-      });
       $(document).ready(function() {
         $(".button-collapse").sideNav();
+        tinymce.init({
+          selector: 'textarea',
+          toolbar: 'fontselect | undo redo | styleselect | bold italic | link image | codesample',
+          font_formats: 'Andale Mono=andale mono,times;Monospace=monospace;Arial=arial,helvetica,sans-serif;Arial Black=arial black,avant garde;Book Antiqua=book antiqua,palatino;Comic Sans MS=comic sans ms,sans-serif;Courier New=courier new,courier;Georgia=georgia,palatino;Helvetica=helvetica;Impact=impact,chicago;Symbol=symbol;Tahoma=tahoma,arial,helvetica,sans-serif;Terminal=terminal,monaco;Times New Roman=times new roman,times;Trebuchet MS=trebuchet ms,geneva;Verdana=verdana,geneva;Webdings=webdings;Wingdings=wingdings,zapf dingbats;',
+          plugins : 'advlist autolink link image lists charmap print preview codesample',
+          codesample_languages: [
+            {text: 'HTML/XML', value: 'markup'},
+            {text: 'JavaScript', value: 'javascript'},
+            {text: 'CSS', value: 'css'},
+            {text: 'PHP', value: 'php'},
+            {text: 'Ruby', value: 'ruby'},
+            {text: 'Python', value: 'python'},
+            {text: 'Java', value: 'java'},
+            {text: 'C', value: 'c'},
+            {text: 'Bash', value: 'bash'},
+            {text: 'C#', value: 'csharp'},
+            {text: 'C++', value: 'cpp'}
+          ],
+        });
+
       });
     </script>
     <script src="/static/js/prism.js"></script>

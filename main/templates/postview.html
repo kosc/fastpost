@@ -23,7 +23,7 @@
       </li>
     {% endfor %}
   </ul>
-  <form action="/post/{{ post.slug }}" method="POST">
+  <form action="/post/{{ post.slug }}" method="POST" novalidate>
     {% csrf_token %}
     {{ form.as_p }}
     <input type="submit" value="{% trans 'Add comment' %}">
