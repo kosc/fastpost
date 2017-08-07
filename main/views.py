@@ -8,7 +8,8 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
 from django.contrib.auth import login, logout
 from main.models import Post, Comment
-from main.forms import NewPostForm, PartialNewPostForm, NewCommentForm
+from main.forms import NewPostForm, PartialNewPostForm, NewCommentForm, \
+                       RegistrationForm
 
 
 def index(request):
@@ -17,7 +18,7 @@ def index(request):
 
 
 class RegistrationFormView(FormView):
-    form_class = UserCreationForm
+    form_class = RegistrationForm
     success_url = "/"
     template_name = "register.html"
 
@@ -102,9 +103,14 @@ class PostView(View):
 
     def post(self, request, post_title):
         post = Post.objects.filter(slug=post_title)[0]
-        form = NewCommentForm(request.POST)
+        comment = Comment()
+        comment.post = post
+        comment.text = request.POST['text']
         if isinstance(request.user, User):
-            form.instance.author = request.user
-        form.instance.post = post
-        form.save()
+            comment.author = request.user
+            comment.save()
+        else:
+            form = NewCommentForm(request.POST)
+            if form.is_valid():
+                comment.save()
         return redirect('/post/' + post.slug)

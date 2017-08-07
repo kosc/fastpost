@@ -25,7 +25,10 @@
   </ul>
   <form action="/post/{{ post.slug }}" method="POST" novalidate>
     {% csrf_token %}
-    {{ form.as_p }}
+    {{ form.text }}
+    {% if not user.is_authenticated %}
+    {{ form.captcha }}
+    {% endif %}
     <input type="submit" value="{% trans 'Add comment' %}">
   </form>
 {% endblock %}
