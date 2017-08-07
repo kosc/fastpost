@@ -45,3 +45,12 @@ class Comment(models.Model):
     post = models.ForeignKey(Post)
     text = models.TextField()
     author = models.ForeignKey(User, blank=True, null=True)
+
+
+class Tag(models.Model):
+
+    def __str__(self):
+        return self.name
+
+    post = models.ForeignKey(Post)
+    name = models.CharField(max_length=255)

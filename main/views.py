@@ -7,7 +7,7 @@ from django.views.generic.base import View
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
 from django.contrib.auth import login, logout
-from main.models import Post, Comment
+from main.models import Post, Comment, Tag
 from main.forms import NewPostForm, PartialNewPostForm, NewCommentForm, \
                        RegistrationForm
 
@@ -57,6 +57,13 @@ class NewPostView(FormView):
         post.slug = unidecode(post.title)
         post.slug = slugify(post.slug)
         post.save()
+        if self.request.POST['tags_field']:
+            tags = self.request.POST['tags_field'].replace(', ', ',').split(',')
+            for tag_name in tags:
+                tag = Tag()
+                tag.post = post
+                tag.name = tag_name
+                tag.save()
         self.success_url = "/post/" + post.slug
         return super(NewPostView, self).form_valid(form)
 
@@ -88,6 +95,7 @@ class PostView(View):
 
     def get(self, request, post_title):
         post = Post.objects.filter(slug=post_title)[0]
+        tags = Tag.objects.filter(post_id=post.id)
         comments = Comment.objects.filter(post_id=post.id)
         form = NewCommentForm()
         editable = False
@@ -98,6 +106,7 @@ class PostView(View):
             "editable": editable,
             "comments": comments,
             "form": form,
+            "tags": tags,
         }
         return render(request, "postview.html", context)
 

@@ -1,5 +1,5 @@
 from django.utils.translation import ugettext, ugettext_lazy as _
-from django.forms import ModelForm
+from django.forms import ModelForm, CharField
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 
@@ -15,10 +15,11 @@ class NewPostForm(ModelForm):
 
 
 class PartialNewPostForm(ModelForm):
+    tags_field = CharField()
 
     class Meta:
         model = Post
-        exclude = ['created_at', 'author', 'slug', 'short_content']
+        fields = ['title', 'content']
 
 
 class NewCommentForm(ModelForm):
@@ -34,4 +35,4 @@ class RegistrationForm(UserCreationForm):
 
     class Meta:
         model = User
-        fields = ("username", "email")
+        fields = ["username", "email"]
