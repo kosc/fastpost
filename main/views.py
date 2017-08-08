@@ -123,3 +123,18 @@ class PostView(View):
             if form.is_valid():
                 comment.save()
         return redirect('/post/' + post.slug)
+
+
+class TagView(View):
+
+    def get(self, request, tag_id):
+        tag = Tag.objects.get(pk=tag_id)
+        tags = Tag.objects.filter(name=tag.name)
+        posts = []
+        for tag in tags:
+            posts.append(tag.post)
+        context = {
+            "posts": posts,
+            "tag_name": tag.name,
+        }
+        return render(request, "tagsearch.html", context)

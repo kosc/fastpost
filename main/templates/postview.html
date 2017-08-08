@@ -9,7 +9,9 @@
   {{ post.content|safe }}
   <hr>
   {% for tag in tags %}
-    <span class="badge">#{{ tag.name }}</span>
+    <a href="{% url 'tagsearch' tag.id %}">
+      <span class="badge">#{{ tag.name }}</span>
+    </a>
   {% endfor %}
   {{ post.created_at }}
   <hr>

@@ -31,6 +31,8 @@ urlpatterns = [
 
     url(r'^post/(?P<post_title>[a-zA-Z0-9\-_]+)', main.views.PostView.as_view(), name='viewpost'),
 
+    url(r'^tag/(?P<tag_id>\w+)$', main.views.TagView.as_view(), name='tagsearch'),
+
     url(r'^tinymce/', include('tinymce.urls')),
 
     url(r'^captcha/', include('captcha.urls')),
