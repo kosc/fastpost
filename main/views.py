@@ -1,10 +1,9 @@
 from unidecode import unidecode
 from django.utils.text import slugify
 from django.shortcuts import render, redirect
-from django.views.generic import ListView
-from django.views.generic.edit import FormView, CreateView
+from django.views.generic.edit import FormView
 from django.views.generic.base import View
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.models import User
 from django.contrib.auth import login, logout
 from main.models import Post, Comment, Tag
