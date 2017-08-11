@@ -1,6 +1,8 @@
 # fastpost
 Blog engine in Django Framework, just for fun
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/fe9b5907856f438f9e9e4de0e114e342)](https://www.codacy.com/app/hotkosc/fastpost?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=kosc/fastpost&amp;utm_campaign=Badge_Grade)
+
 # Installation instructions:
 Install python3.5 or later and pip.
 Clone the repo and install all necessary python modules:
