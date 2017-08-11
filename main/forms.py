@@ -1,4 +1,3 @@
-from django.utils.translation import ugettext_lazy as _
 from django.forms import ModelForm, CharField
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
