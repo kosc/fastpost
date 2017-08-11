@@ -52,8 +52,8 @@ class AuthTestCase(TestCase):
         response = self.client.post('/register', test_user_data)
         self.assertEqual(response.status_code, 302)
         user = User.objects.get(username='register_test_user')
-        assert(isinstance(user, User))
-        assert(user.check_password('T3stP4ssw0rd'))
+        self.assertTrue(isinstance(user, User))
+        self.assertTrue(user.check_password('T3stP4ssw0rd'))
 
     def test_login(self):
         response = self.client.get('/login')
