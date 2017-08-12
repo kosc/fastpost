@@ -30,7 +30,7 @@ before_script:
   - docker-compose up --build -d
 
 script:
-  - ./test.sh
+  - python manage.py test
 
 after_script:
   - docker-compose down
