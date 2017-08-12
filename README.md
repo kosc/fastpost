@@ -12,7 +12,7 @@ cd fastpost
 pip install --user -r requirements/dev.txt # if you want to help me with this project or just test this.
 pip install --user -r requirements/base.txt # if you want to use this on production
 ```
-Create user and database for fastpost in postgresql, and create fastpost/local\_settings.py with following content:
+Create fastpost/local\_settings.py with following content:
 ```python
 # from .settings import INSTALLED_APPS, MIDDLEWARE_CLASSES
 # Uncomment first line for development server
@@ -26,7 +26,7 @@ ALLOWED_HOSTS = ["your-production-domain"] # for production
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'fastpostdb.sqlite3', # database for fastpost
+        'NAME': 'data/fastpostdb.sqlite3', # database for fastpost
     }
 }
 
