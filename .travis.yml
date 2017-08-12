@@ -27,7 +27,7 @@ before_script:
   - docker-compose up --build -d
 
 script:
-  - python manage.py test
+  - docker exec fastpost_fastpost_1 python manage.py test
 
 after_script:
   - docker-compose down
