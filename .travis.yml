@@ -16,13 +16,17 @@ install:
     sudo apt-get -o Dpkg::Options::="--force-confdef" \
      -o Dpkg::Options::="--force-confold" --assume-yes install --allow-unauthenticated docker-engine
   - >
-    fastpost/local_settings.py <<EOF
+    cat >fastpost/local_settings.py <<EOF 
+
     from .settings import INSTALLED_APPS, MIDDLEWARE_CLASSES
     
     SECRET_KEY = 'Your secret key'
+    
     DEBUG = True # False if your want to use fastpost in production
+    
     ALLOWED_HOSTS = ['*'] # for docker-compose
     
+
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
@@ -31,8 +35,11 @@ install:
     }
     
     # if you want to use debug_toolbar
+
     INSTALLED_APPS.append('debug_toolbar')
+    
     MIDDLEWARE_CLASSES.append('debug_toolbar.middleware.DebugToolbarMiddleware')
+    
     EOF
   - docker version
   # Update docker-compose via pip
