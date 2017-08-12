@@ -17,13 +17,15 @@ install:
      -o Dpkg::Options::="--force-confold" --assume-yes install --allow-unauthenticated docker-engine
   - >
     mv .travis.local_settings.py fastpost/local_settings.py
+  - > 
+    touch data/fastpostdb.sqlite3
   - docker version
   # Update docker-compose via pip
   - sudo pip install docker-compose
   - docker-compose version
 
 before_script:
-  - sudo docker-compose up --build -d
+  - docker-compose up --build -d
 
 script:
   - ./test.sh
