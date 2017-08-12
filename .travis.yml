@@ -23,7 +23,7 @@ install:
   - docker-compose version
 
 before_script:
-  - docker-compose up --build -d
+  - sudo docker-compose up --build -d
 
 script:
   - ./test.sh
