@@ -18,7 +18,7 @@ install:
   - >
     mv .travis.local_settings.py fastpost/local_settings.py
   - > 
-    touch data/fastpostdb.sqlite3
+    sudo touch data/fastpostdb.sqlite3
   - docker version
   # Update docker-compose via pip
   - sudo pip install docker-compose
