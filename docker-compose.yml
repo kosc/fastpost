@@ -24,7 +24,6 @@ services:
         command: bash -c "python manage.py collectstatic --noinput && python manage.py migrate"
     nginx:
         image: nginx:latest
-        container_name: ng01
         ports:
           - "8000:8000"
         volumes:
