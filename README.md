@@ -42,7 +42,6 @@ python manage.py runserver
 ```
 To run with a docker compose
 ```
-touch fastpostdb.sqlite3
 docker-compose up
 ```
 
