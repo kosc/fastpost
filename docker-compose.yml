@@ -23,7 +23,7 @@ services:
           - ./static:/fastpost/static
         command: bash -c "python manage.py collectstatic --noinput && python manage.py migrate"
     nginx:
-        image: nginx:latest
+        image: nginx:1.13.3
         ports:
           - "8000:8000"
         volumes:
