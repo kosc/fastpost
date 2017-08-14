@@ -7,8 +7,8 @@ services:
             dockerfile: dockerfiles/fastpost.Dockerfile
         volumes:
           - ./data:/fastpost/data
-        ports:
-            - "8000:8000"
+        expose:
+          - "8000"
         restart: unless-stopped
         command: python manage.py runserver 0.0.0.0:8000
         depends_on:
@@ -20,5 +20,16 @@ services:
             dockerfile: dockerfiles/fastpost.Dockerfile
         volumes:
           - ./data:/fastpost/data
-        command: python manage.py migrate
+          - ./static:/fastpost/static
+        command: bash -c "python manage.py collectstatic --noinput && python manage.py migrate"
+    nginx:
+        image: nginx:1.13.3
+        ports:
+          - "8000:8000"
+        volumes:
+          - ./nginx:/etc/nginx/conf.d
+          - ./static:/static
+        depends_on:
+          - fastpost
+
 

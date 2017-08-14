@@ -23,6 +23,8 @@ ALLOWED_HOSTS = [] # for development
 ALLOWED_HOSTS = ['*'] # for docker-compose
 ALLOWED_HOSTS = ["your-production-domain"] # for production
 
+STATIC_ROOT = "static/" # For nginx in docker
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
