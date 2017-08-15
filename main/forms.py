@@ -14,7 +14,7 @@ class NewPostForm(ModelForm):
 
 
 class PartialNewPostForm(ModelForm):
-    tags_field = CharField()
+    tags_field = CharField(required=False)
 
     class Meta:
         model = Post
