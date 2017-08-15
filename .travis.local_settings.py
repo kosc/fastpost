@@ -4,6 +4,8 @@ SECRET_KEY = 'Your secret key'
 DEBUG = True # False if your want to use fastpost in production
 ALLOWED_HOSTS = ['*'] # for docker-compose
 
+STATIC_ROOT = "static/" # For nginx in docker
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
