@@ -20,8 +20,9 @@ import main.views
 
 try:
     from .local_settings import ADMIN_URL
-    if not ADMIN_URL: raise
-except:
+    if not ADMIN_URL:
+        raise ImportError
+except ImportError:
     ADMIN_URL = 'admin'
 
 urlpatterns = [
