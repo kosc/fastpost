@@ -22,6 +22,7 @@ DEBUG = True # False if your want to use fastpost in production
 ALLOWED_HOSTS = [] # for development
 ALLOWED_HOSTS = ['*'] # for docker-compose
 ALLOWED_HOSTS = ["your-production-domain"] # for production
+ADMIN_URL = 'admin' # Path of administrator panel
 
 STATIC_ROOT = "static/" # For nginx in docker
 
