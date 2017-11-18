@@ -1,5 +1,5 @@
 # fastpost
-Blog engine in Django Framework, just for fun
+Blog engine in Django Framework, just for fun. You can see the demo site on http://fastpost.hotkosc.ru
 
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/fe9b5907856f438f9e9e4de0e114e342)](https://www.codacy.com/app/hotkosc/fastpost?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=kosc/fastpost&amp;utm_campaign=Badge_Grade)
 
