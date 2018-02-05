@@ -56,7 +56,7 @@ class NewPostView(FormView):
         post.slug = unidecode(post.title)
         post.slug = slugify(post.slug)
         post.save()
-        if self.request.POST['tags_field']:
+        if 'tags_field' in self.request.POST.keys():
             tags = self.request.POST['tags_field'].replace(', ', ',').split(',')
             for tag_name in tags:
                 tag = Tag()
