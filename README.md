@@ -14,7 +14,7 @@ pip install --user -r requirements/base.txt # if you want to use this on product
 ```
 Create fastpost/local\_settings.py with following content:
 ```python
-# from .settings import INSTALLED_APPS, MIDDLEWARE_CLASSES
+# from .settings import INSTALLED_APPS, MIDDLEWARE
 # Uncomment first line for development server
 
 SECRET_KEY = 'Your secret key'
@@ -33,7 +33,7 @@ DATABASES = {
     }
 }
 
-# if you want to use debug_toolbar
+# if you want to use debug_toolbar (dev server only)
 INSTALLED_APPS.append('debug_toolbar')
 MIDDLEWARE.append('debug_toolbar.middleware.DebugToolbarMiddleware')
 
