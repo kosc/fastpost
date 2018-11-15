@@ -1,4 +1,4 @@
-from .settings import INSTALLED_APPS, MIDDLEWARE_CLASSES
+from .settings import INSTALLED_APPS, MIDDLEWARE
 
 SECRET_KEY = 'Your secret key'
 DEBUG = True # False if your want to use fastpost in production
