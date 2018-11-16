@@ -25,9 +25,11 @@ install:
 
 before_script:
   - docker-compose up --build -d
+  - export CONTAINER_NAME=$(docker ps -a | grep -oE "fastpost_fastpost_[0-9]_[a-z0-9]{1,}")
+  - echo $CONTAINER_NAME
 
 script:
-  - docker exec fastpost_fastpost_1 python manage.py test
+  - docker exec $CONTAINER_NAME python manage.py test
 
 after_script:
   - docker-compose down
