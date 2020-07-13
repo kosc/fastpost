@@ -12,31 +12,11 @@ cd fastpost
 pip install --user -r requirements/dev.txt # if you want to help me with this project or just test this.
 pip install --user -r requirements/base.txt # if you want to use this on production
 ```
-Create fastpost/local\_settings.py with following content:
-```python
-# from .settings import INSTALLED_APPS, MIDDLEWARE
-# Uncomment first line for development server
-
-SECRET_KEY = 'Your secret key'
-DEBUG = True # False if your want to use fastpost in production
-ALLOWED_HOSTS = [] # for development
-ALLOWED_HOSTS = ['*'] # for docker-compose
-ALLOWED_HOSTS = ["your-production-domain"] # for production
-ADMIN_URL = 'admin' # Path of administrator panel
-
-STATIC_ROOT = "static/" # For nginx in docker
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'data/fastpostdb.sqlite3', # database for fastpost
-    }
-}
-
-# if you want to use debug_toolbar (dev server only)
-INSTALLED_APPS.append('debug_toolbar')
-MIDDLEWARE.append('debug_toolbar.middleware.DebugToolbarMiddleware')
-
+Create following envorinment variables:
+```shell
+export DEBUG=True # False for production envorinment
+export SECRET_KEY=SecretKey # Some secret key, keep it secure. Remember - sessions will be erased in case of changing this key.
+export DATABASE_NAME=fastpost.sqlite3 # Filename of the database
 ```
 Fill your database and run Django development server:
 ```shell
