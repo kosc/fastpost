@@ -116,4 +116,12 @@ TINYMCE_DEFAULT_CONFIG = {
     'file_browser_callback': 'mce_filebrowser',
 }
 
-from .local_settings import *
+SECRET_KEY = os.environ.get('SECRET_KEY', 'D3f4u1tS3cr3tKey')
+DEBUG = bool(os.environ.get('DEBUG', 'False'))
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.environ.get('DATABASE_NAME', 'fastpost.sqlite3'),
+    },
+}
